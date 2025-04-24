@@ -1,0 +1,56 @@
+grecord(motor,"$(P)$(M)")
+{
+	field(DESC,"$(DESC="motor $(M)")")
+	field(DTYP,"KKTech")
+	field(DIR,"$(DIR=Pos)")
+	field(VELO,"$(VELO=1)")
+	field(VBAS,"$(VBAS=.1)")
+	field(ACCL,"$(ACCL=.2)")
+	field(BDST,"$(BDST=0)")
+	field(BVEL,"$(BVEL=1)")
+	field(BACC,"$(BACC=.2)")
+	field(OUT,"#C$(C=0) S$(S) @")
+	field(MRES,"$(MRES=0.01)")
+	field(PREC,"$(PREC=5)")
+	field(EGU,"$(EGU=mm)")
+	field(DHLM,"$(DHLM=100)")
+	field(DLLM,"$(DLLM=-100)")
+	field(INIT,"$(INIT="")")
+	field(TWV,"1")
+}
+
+record(transform, "$(P)$(M)_ableput") {
+  field(CLCB, "a")
+  field(CLCC, "a")
+  field(OUTA, "$(P)$(M).DISA NPP NMS")
+  field(OUTB, "$(P)$(M).DISP NPP NMS")
+  field(OUTC, "$(P)$(M).DISA NPP NMS")
+}
+
+record(bo, "$(P)$(M)_able") {
+  field(DESC, "motor enable")
+  field(PINI, "YES")
+  field(OUT, "$(P)$(M)_ableput.A PP MS")
+  field(ZNAM, "Enable")
+  field(ONAM, "Disable")
+}
+
+record(scalcout, "$(P)$(M)_vCh") {
+  field(DESC, "change velocity")
+  field(INPB, "$(P)$(M).S")
+  field(INPC, "$(P)$(M).SBAS")
+  field(INPD, "$(P)$(M).SMAX")
+  field(CALC, "min(max(a*b,c),d)")
+  field(OUT, "$(P)$(M).S")
+}
+
+record(scalcout, "$(P)$(M)_twCh") {
+  field(DESC, "change TWV")
+  field(INPB, "$(P)$(M).TWV")
+  field(INPC, "$(P)$(M).MRES")
+  field(INPD, "$(P)$(M).HLM")
+  field(INPE, "$(P)$(M).LLM")
+  field(CALC, "min(max(a*b,c),d-e)")
+  field(OUT, "$(P)$(M).TWV")
+}
+

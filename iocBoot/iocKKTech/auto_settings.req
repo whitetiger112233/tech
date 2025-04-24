@@ -1,0 +1,9 @@
+file basic_motor_settings.req P=$(P), M=$(M1)
+file basic_motor_settings.req P=$(P), M=$(M2)
+file basic_motor_settings.req P=$(P), M=$(M3)
+file basic_motor_settings.req P=$(P), M=$(M4)
+file basic_motor_settings.req P=$(P), M=$(M5)
+file basic_motor_settings.req P=$(P), M=$(M6)
+file basic_motor_settings.req P=$(P), M=$(M7)
+file basic_motor_settings.req P=$(P), M=$(M8)
+
